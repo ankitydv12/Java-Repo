@@ -60,7 +60,24 @@ public class label03 {
          */
         label.setVerticalAlignment(JLabel.CENTER);
         label.setHorizontalAlignment(JLabel.CENTER);
+        // set  horizontal postional of text and label
 
+
+        //label.setBounds(100, 90, 250, 250);
+        /*
+         * setBounds(int x ,int y,int width,int height)
+         *      int x => postion on x axis
+         *      int int y = pos on y axis
+         *      int width , int height = w and h of component or label
+         */
+
+        // fm.setLayout(null);
+        /*
+         *  Border layout is by default
+         */
+
+        fm.pack(); //Note: comment or remove Layout manager && add all component before pack 
+        // pack the frmae or window according  to the content of label
 
 
 
