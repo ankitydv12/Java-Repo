@@ -13,9 +13,10 @@ public class label03 {
         fm.setTitle("label03");
         
 
-
         JLabel label = new JLabel();
         label.setText("Set text of label");
+
+
         fm.add(label);
         /*
          * to add label:
@@ -31,11 +32,15 @@ public class label03 {
 
         label.setHorizontalTextPosition(JLabel.CENTER);
         //set in LEFT , RIGHT , CENTER
+
+
         label.setVerticalTextPosition(JLabel.TOP);
         // set label text in TOP , BOTTOM , CENTER
 
+
         label.setForeground(Color.RED);
         // set the color of the label(text)
+
 
         label.setFont(new Font("My Boli", Font.PLAIN, 28));
         /*
@@ -47,17 +52,23 @@ public class label03 {
                          Font.BLOD =1
                          Font.ITALIC =2
                 size => font size
-        */ 
+        */
+        
+        
         label.setIconTextGap(9); // set the gap b/w text and image 
+
 
         label.setBackground(Color.black); // set bg of label
         label.setOpaque(true); // display the color
 
+
         Border border = BorderFactory.createLineBorder(Color.ORANGE);
         label.setBorder(border);
-        /*
-         * 
-         */
+/*
+ * 
+*/
+
+    
         label.setVerticalAlignment(JLabel.CENTER);
         label.setHorizontalAlignment(JLabel.CENTER);
         // set  horizontal postional of text and label
