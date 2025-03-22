@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -19,10 +21,10 @@ public class JFrame01 {
          * DISPOSE_ON_CLOSE => Hide the window and close the operation
          *  DISPOSE_ON_CLOSE => The dispose-window default window close operation.
          */
-        frame.setSize(420,420); 
+        frame.setSize(620,500); 
         // set x dimnsion and y dimension
 
-        frame.setResizable(false);
+        frame.setResizable(true);
         // false => Restrict to resize
         // True => Free to Resize
             
@@ -30,6 +32,7 @@ public class JFrame01 {
         // make frame visible 
 
         ImageIcon img  = new  ImageIcon("logo.png");
+        System.out.println(img.getImage());
         /*
          *    Adding logo to application:
          *      Creat an object(img) of ImageIcon class (javax.swing.ImageIcon)
@@ -37,6 +40,17 @@ public class JFrame01 {
          */
 
         frame.setIconImage(img.getImage());
+        // set the image as logo (not working)
 
+        frame.getContentPane().setBackground(new Color(25,43,23));
+        /*
+         * contentPane:
+         *      is primary container in JFrame
+         *      Top level window which contain buttons , labels , panel
+         *      By default use BorderLayout 
+         * setBackground(Color.RED)
+         * setBackground(new Color(r,b,g))
+         * setBackground(new Color(0xFFFFFF))=> hexadecimal color value
+         */
     }
 }
