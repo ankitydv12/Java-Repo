@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-public class label03 {
+public class label03 extends MyFrame {
     public static void main(String[] args) {
         MyFrame fm = new MyFrame();
         fm.setSize(1200,1200);
