@@ -1,5 +1,8 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Jpanel04  {
@@ -8,18 +11,39 @@ public class Jpanel04  {
         //JPanel is GUI component that function as a container to hold other component 
 
         MyFrame fm = new MyFrame();
-        fm.setLayout(null);
+         fm.setLayout(null);
+         fm.setSize(700, 800);
 
 
         JPanel panel = new JPanel();
-        panel.setBackground(Color.RED);
-        panel.setBounds(0, 0, 255, 255);
-        fm.add(panel);
-
         JPanel redpanel = new JPanel();
-        redpanel.setBackground(Color.BLUE);
-        redpanel.setBounds(255, 0, 255, 255);
+        JLabel label = new JLabel("Hi");
+        ImageIcon img = new ImageIcon("logo.png");
+        label.setIcon(img);
+        
+        // label.setHorizontalAlignment(JLabel.CENTER);
+        // label.setHorizontalTextPosition(1);
+
+        label.setLayout(null);
+        label.setBounds(500, 150, 56, 89);
+        
+
+
+        panel.setBackground(Color.RED);
+        redpanel.setBackground(Color.blue);
+        
+        panel.add(label);
+
+        panel.setBounds(0, 0, 500, 500);
+        redpanel.setBounds(500, 0, 500, 500);
+
+
+
+        fm.add(panel);
         fm.add(redpanel);
+
+
+        
 
     }
     
