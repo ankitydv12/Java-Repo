@@ -18,7 +18,7 @@ public class editor extends JFrame implements ActionListener{
     JFrame fm;
     public editor()
     {
-        this.
+        this.setVisible(true);
         try {
             UIManager.setLookAndFeel("java.swing.plt.nimbus.NimbusLookAndFeel");
             MetalLookAndFeel.setCurrentTheme(new OceanTheme());
@@ -42,10 +42,10 @@ public class editor extends JFrame implements ActionListener{
         mi3.addActionListener(this);
         mi4.addActionListener(this);
 
-        mi1.add(mi1);
-        mi2.add(mi2);
-        mi3.add(mi3);
-        mi4.add(mi4);
+        m1.add(mi1);
+        m1.add(mi2);
+        m1.add(mi3);
+        m1.add(mi4);
 
     }
     @Override
@@ -54,6 +54,6 @@ public class editor extends JFrame implements ActionListener{
         
     }
     public static void main(String[] args) {
-        editor e = new editor();
+        new editor();
     }
 }
