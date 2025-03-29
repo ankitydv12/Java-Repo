@@ -18,7 +18,8 @@ public class editor extends JFrame implements ActionListener{
     JFrame fm;
     public editor()
     {
-        this.setVisible(true);
+        fm = new JFrame();
+        fm.setVisible(true);
         try {
             UIManager.setLookAndFeel("java.swing.plt.nimbus.NimbusLookAndFeel");
             MetalLookAndFeel.setCurrentTheme(new OceanTheme());
@@ -46,6 +47,23 @@ public class editor extends JFrame implements ActionListener{
         m1.add(mi2);
         m1.add(mi3);
         m1.add(mi4);
+
+        JMenu m2 = new JMenu("Edit");
+        JMenuItem m4 = new JMenuItem("cut");
+        JMenuItem m5 = new JMenuItem("copy");
+        JMenuItem m6 = new JMenuItem("past");
+
+        m2.add(m4);
+        m2.add(m5);
+        m2.add(m6);
+
+        JMenuItem mc = new JMenuItem("close");
+
+        mb.add(m1);
+        mb.add(m2);
+        mb.add(mc);
+
+
 
     }
     @Override
