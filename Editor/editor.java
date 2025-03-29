@@ -20,13 +20,13 @@ public class editor extends JFrame implements ActionListener{
     {
         fm = new JFrame();
         fm.setVisible(true);
-        try {
-            UIManager.setLookAndFeel("java.swing.plt.nimbus.NimbusLookAndFeel");
-            MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+         try {
+             UIManager.setLookAndFeel("java.swing.plt.nimbus.NimbusLookAndFeel");
+             MetalLookAndFeel.setCurrentTheme(new OceanTheme());
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
 
         txt = new JTextArea();
         JMenuBar mb = new JMenuBar();
@@ -63,6 +63,12 @@ public class editor extends JFrame implements ActionListener{
         mb.add(m2);
         mb.add(mc);
 
+        fm.setMenuBar(mb);
+        fm.add(mc);
+        fm.add(txt);
+        fm.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+
 
 
     }
@@ -72,6 +78,6 @@ public class editor extends JFrame implements ActionListener{
         
     }
     public static void main(String[] args) {
-        new editor();
+        editor obj = new editor();
     }
 }
