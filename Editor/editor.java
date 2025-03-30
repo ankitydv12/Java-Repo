@@ -6,12 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
@@ -22,10 +24,13 @@ public class editor extends JFrame implements ActionListener{
     JTextArea txt;
     JFrame fm;
 
-     JButton mc;
+    JButton mc;
+
+    JFileChooser fc;
     public editor()
     {
         fm = new JFrame();
+        fc = new JFileChooser();
       
          try {
              UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -94,18 +99,30 @@ public class editor extends JFrame implements ActionListener{
         fm.setJMenuBar(mb);
         fm.setSize(1200,800);
         fm.setResizable(true);
-        fm.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        fm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fm.setVisible(true);
         fm.setLocationRelativeTo(null);
         fm.add(txt);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+
+    String cm = e.getActionCommand();
+    System.out.println(cm);
+
+    if(cm.equals("New"))
+        newwindow();
+    else if(cm.equals("Open"))
+    {
         
+    }
+
+
         
-        if(e.getSource()==mc)
-            System.exit(ABORT);
-        
+    }
+    public void newwindow()
+    {
+        SwingUtilities.invokeLater(()-> new editor());
     }
     public static void main(String[] args) {
        new editor();
