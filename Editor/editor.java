@@ -4,9 +4,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.classfile.BufWriter;
 
 import javax.swing.JButton;
@@ -19,6 +23,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -31,12 +37,15 @@ public class editor extends JFrame implements ActionListener{
     JFrame fm;
 
     JButton mc;
-
+    boolean isModified = false;
     JFileChooser fc;
+    String cutstr;
     public editor()
     {
         fm = new JFrame();
-        fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        fc = new JFileChooser(FileSystemView.getFileSystemView());
+        File df_dir = new File("/media/ankit/52EEF87BEEF85925/Learning/Java-Repo");
+        fc.setCurrentDirectory(df_dir);
       
          try {
              UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -106,16 +115,38 @@ public class editor extends JFrame implements ActionListener{
         fm.setSize(1200,800);
         fm.setResizable(true);
         fm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //fm.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevents automatic closing
+
+    addWindowListener(new java.awt.event.WindowAdapter()
+    {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent e) {
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", 
+                                                     "Confirm Exit", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
+            dispose(); // Closes the window
+            System.exit(0); // Ensures application exits
+        }
+    }
+    });
+
+
         fm.setVisible(true);
         fm.setLocationRelativeTo(null);
         fm.add(txt);
+
+        txt.getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e)
+                isModified = true;
+            pub
+        });
     }
     @Override
     public void actionPerformed(ActionEvent e) {
 
     String cm = e.getActionCommand();
     System.out.println(cm);
-
+    
     if(cm.equals("New"))
         newwindow();
     else if(cm.equals("Open"))
@@ -145,13 +176,49 @@ public class editor extends JFrame implements ActionListener{
 
     }
     else if(cm.equals("Save"))
+    {   fc.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter restrict = new FileNameExtensionFilter("txt file", "txt");
+        fc.addChoosableFileFilter(restrict);
+        int res = fc.showSaveDialog(this);
+        File f = fc.getSelectedFile();
+        if(res==JFileChooser.APPROVE_OPTION)
+        {
+            String sv = txt.getText();
+            savetofile(f, sv);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "No File Selected");
+        }
+    }
+    else if(cm.equals("Print"))
     {
-        File file = new File(fc.getSelectedFile().getAbsolutePath());
-        BufWriter bw = new BufWriter(file);
+        try {
+            txt.print();
+        } catch (PrinterException e1) {
+            e1.printStackTrace();
+        }
+    }
+    else if(cm.equals("Cut"))
+    {
+        txt.cut();
+    }
+    else if(cm.equals("Past"))
+    { 
+        txt.paste();
     }
 
 
         
+    }
+    private void savetofile(File f,String s) 
+    {
+        try (FileWriter write = new FileWriter(f)){
+            write.write(s);
+            JOptionPane.showMessageDialog(this,"File is Save at"+f.getAbsolutePath());
+            
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erorr","Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     public void newwindow()
     {
